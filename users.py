@@ -51,22 +51,21 @@ class Chef(Employee):
     def __init__(self, name, phone, email, address, salary, starting_date, department, cooking_items) -> None:
         super().__init__(name, phone, email, address, salary, starting_date, department)
         self.cooking_items = cooking_items
-        self.salary = 0
-    
-    def salary_wallet(self, amount):
-        self.salary += amount
-        return f'Recieving salary {amount}'
+        self.wallet = 0
 
+    def salary_wallet_chef(self, amount):
+        self.wallet += amount
+        return f'{self.wallet}'
 
 class Server(Employee):
     def __init__(self, name, phone, email, address, salary, starting_date, department) -> None:
         self.tips_earning = 0
         self.wallet = 0
         super().__init__(name, phone, email, address, salary, starting_date, department)
-    
-    def salary_wallet(self, amount):
+
+    def salary_wallet_server(self, amount):
         self.wallet += amount
-        return f'Recieving salary {self.wallet}'
+        return f'{self.wallet}'
     
     def take_order(self, order):
         pass
@@ -83,3 +82,8 @@ class Server(Employee):
 class Manager(Employee):
     def __init__(self, name, phone, email, address, salary, starting_date, department) -> None:
         super().__init__(name, phone, email, address, salary, starting_date, department)
+        self.wallet = 0
+
+    def salary_wallet_manager(self, amount):
+        self.wallet += amount
+        return f'{self.wallet}'

@@ -32,10 +32,18 @@ class Restaurant:
         if employee.salary < self.balance:
             if employee_type == 'server':
                 self.balance -= employee.salary
-                rcv = employee.salary_wallet(employee.salary)
-                return rcv
+                rcv = employee.salary_wallet_server(employee.salary)
+                print(f'{employee_type},recieved Salary, {rcv}' )
+            if employee_type == 'chef':
+                self.balance -= employee.salary
+                rcv = employee.salary_wallet_chef(employee.salary)
+                print(f'{employee_type},recieved Salary, {rcv}' )
+            if employee_type == 'manager':
+                self.balance -= employee.salary
+                rcv = employee.salary_wallet_manager(employee.salary)
+                print(f'{employee_type}, recieved Salary, {rcv}' )
 
-
+                
     def show_employee(self):
         print('------------Showing Employees----------')
         if self.manager is not None:
