@@ -1,5 +1,8 @@
 from menu import *
+from restaurant import*
+from users import*
 def main():
+    #create menu
     menu = Menu()
     #add pizzas to the manue
     pizza_1 = Pizza('Rustom Pizza', 1000, 'Large', ['Meat', 'Onion', 'Mashroom'])
@@ -25,4 +28,20 @@ def main():
 
     #show menu
     menu.show_menu()
-main()
+
+    #create restuarant
+    hotel = Restaurant('Fahad''s Vater Hotel',5000, menu)
+
+    #add employees
+    manager = Manager('Fahad', 2324, 'fahad@hossain.com', 'Cumilla', 2000, '12 Nov, 2001', 'Manager')
+    chef = Chef('Tonmoy', 1356, 'tonmoy_kitchen@gmail.com', 'Gopali', 10000000, '31 Dec, 2002', 'Main Chef', ['Burgers', 'Pizzas'])
+    server = Server('naim', 334422, 'naim@naim.com', 'Barishal', 100, '10 March, 2001', 'Cleaning')
+    hotel.add_employee('manager', manager)
+    hotel.add_employee('chef', chef)
+    hotel.add_employee('server', server)
+
+    #showing employee
+    hotel.show_employee()
+
+if __name__ == '__main__':
+    main()

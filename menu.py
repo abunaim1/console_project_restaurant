@@ -46,14 +46,14 @@ class Menu:
             print(f'This {item} is not in your list already')
     
     def show_menu(self):
-        print('-----------------------------------')
+        print('-----------Showing Manu----------')
         for burger in self.burgers:
-            print(f'Burger name: {burger.name} price: {burger.price}')
+            print(f'Burger name: {burger.name} price: {burger.price} ingrediants: {burger.ingredients}')
         print()
         for pizza in self.pizzas:
-            print(f'Pizza name: {pizza.name} price: {pizza.price}')
+            print(f'Pizza name: {pizza.name} price: {pizza.price} toppings: {pizza.toppings}')
         print()
         for drink in self.drinks:
-            print(f'Drinks: {drink.name} price {drink.price}')
-        print('-----------------------------------')
+            print(f'Drinks: {drink.name} price {drink.price} cold: {drink.isCold}')
+        print()
 
