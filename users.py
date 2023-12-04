@@ -12,6 +12,7 @@ class Customer(Users):
     def __init__(self, name, phone, email, address, money) -> None:
         self.wallet = money
         self.__order = None
+        self.due_amount = 0
         super().__init__(name, phone, email, address, )
     
     @property
@@ -23,8 +24,8 @@ class Customer(Users):
         self.__order = order
 
     def place_order(self, order):
-        self.order = order
-        print(f'{self.name} placed an order {order.items}')
+        self.due_amount += order.bill
+        print(f'{self.name} placed an order with bill {order.bill}')
 
     def eat_food(self, order):
         print(f'{self.name} eat {order.items}')
@@ -41,23 +42,31 @@ class Customer(Users):
 class Employee(Users):
     def __init__(self, name, phone, email, address, salary, starting_date, department) -> None:
         self.salary = salary
-        self.due = salary
         self.starting_date = starting_date
         self.department = department
         super().__init__(name, phone, email, address)
     
-    def recieve_salary(self):
-        self.due = 0
 
 class Chef(Employee):
     def __init__(self, name, phone, email, address, salary, starting_date, department, cooking_items) -> None:
         super().__init__(name, phone, email, address, salary, starting_date, department)
         self.cooking_items = cooking_items
+        self.salary = 0
+    
+    def salary_wallet(self, amount):
+        self.salary += amount
+        return f'Recieving salary {amount}'
+
 
 class Server(Employee):
     def __init__(self, name, phone, email, address, salary, starting_date, department) -> None:
         self.tips_earning = 0
+        self.wallet = 0
         super().__init__(name, phone, email, address, salary, starting_date, department)
+    
+    def salary_wallet(self, amount):
+        self.wallet += amount
+        return f'Recieving salary {self.wallet}'
     
     def take_order(self, order):
         pass

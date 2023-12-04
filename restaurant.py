@@ -1,3 +1,4 @@
+from users import Chef, Server, Manager
 class Restaurant:
     def __init__(self, name, rent, manu) -> None:
         self.name = name
@@ -8,6 +9,7 @@ class Restaurant:
         self.rent = rent
         self.balance = 0
         self.profit = 0
+        self.orders = []
 
     def add_employee(self, employee_type, employee):
         if employee_type == 'manager':
@@ -17,15 +19,22 @@ class Restaurant:
         elif employee_type == 'server':
             self.server = employee
     
+    def add_orders(self, order):
+        self.orders.append(order)
+
     def recieve_payment(self, amount, order, customer):
         if amount >= order.bill:
             customer.due_amount = 0
             self.balance += order.bill
-            return order.bill - amount
+            return amount - order.bill
     
-    def pay_salary(self, employee):
+    def pay_salary(self, employee_type, employee):
         if employee.salary < self.balance:
-            employee.recieve_salary()
+            if employee_type == 'server':
+                self.balance -= employee.salary
+                rcv = employee.salary_wallet(employee.salary)
+                return rcv
+
 
     def show_employee(self):
         print('------------Showing Employees----------')
