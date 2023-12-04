@@ -41,9 +41,13 @@ class Customer(Users):
 class Employee(Users):
     def __init__(self, name, phone, email, address, salary, starting_date, department) -> None:
         self.salary = salary
+        self.due = salary
         self.starting_date = starting_date
         self.department = department
         super().__init__(name, phone, email, address)
+    
+    def recieve_salary(self):
+        self.due = 0
 
 class Chef(Employee):
     def __init__(self, name, phone, email, address, salary, starting_date, department, cooking_items) -> None:
@@ -66,3 +70,7 @@ class Server(Employee):
 
     def receive_tips(self, amount):
         self.tips_earning += amount
+
+class Manager(Employee):
+    def __init__(self, name, phone, email, address, salary, starting_date, department) -> None:
+        super().__init__(name, phone, email, address, salary, starting_date, department)
